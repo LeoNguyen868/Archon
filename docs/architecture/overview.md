@@ -1,6 +1,6 @@
 # Architecture Overview
 
-Archon is a skills-centric AI orchestration system that transforms IDEs into Virtual Software Houses using the OODA Loop and Socratic method.
+Archon is a skills-centric AI orchestration system that supercharges IDEs using the OODA Loop and Socratic method.
 
 ## Core Concepts
 

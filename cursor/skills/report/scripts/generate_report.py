@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 generate_report.py
-Purpose: Generate progress reports for Virtual Software House
+Purpose: Generate progress reports for Archon
 Usage: python generate_report.py [--format FORMAT] [--output OUTPUT]
 Arguments:
   --format: markdown|json|html (default: markdown)

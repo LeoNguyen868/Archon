@@ -17,4 +17,4 @@
 - [Brief description or link to diagram]
 
 ## 5. Decision Log (Key Decisions)
-- [Date] Initialized project using Virtual Software House system.
+- [Date] Initialized project using Archon system.

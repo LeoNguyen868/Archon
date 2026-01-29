@@ -45,7 +45,7 @@ def read_template(template_path):
         return ""
 
 def main():
-    parser = argparse.ArgumentParser(description="Initialize Virtual Software House Project Structure")
+    parser = argparse.ArgumentParser(description="Initialize Archon Project Structure")
     parser.add_argument("--root", default=".", help="Root directory for the project")
     args = parser.parse_args()
 

@@ -5,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Cursor](https://img.shields.io/badge/IDE-Cursor-blue)](https://cursor.sh/)
 
-Archon transforms your IDE into a Virtual Software House. It utilizes the OODA Loop model and the Socratic method to coordinate AI Sub-agents (Product Owner, Architect, Developer) through a skills-centric architecture.
+Archon transforms your IDE into a specialized AI orchestration environment. It utilizes the OODA Loop model and the Socratic method to coordinate AI Sub-agents (Product Owner, Architect, Developer) through a skills-centric architecture.
 
 ## Overview
 
@@ -247,4 +247,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-*Transform your IDE into a Virtual Software House with Archon!* 🚀
+*Supercharge your development with Archon!* 🚀

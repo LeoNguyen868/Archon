@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 update_project.py
-Purpose: Update project structure and templates for Virtual Software House
+Purpose: Update project structure and templates for Archon
 Usage: python update_project.py [--action ACTION] [--target TARGET]
 Arguments:
   --action: update_structure|update_templates|update_context_map|sync_all

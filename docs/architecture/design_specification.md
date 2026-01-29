@@ -1,4 +1,4 @@
-# Đặc tả Thiết kế: Virtual Software House System
+# Đặc tả Thiết kế: Archon System
 ## Skills-Centric Architecture, Subagent Workers, and Automation Scripts
 
 ---
@@ -166,11 +166,11 @@ Detailed instructions for the agent.
 ```markdown
 ---
 name: parent-orchestrator
-description: Điều phối toàn bộ hệ thống Virtual Software House, phân phối tasks cho appropriate workers với appropriate skills. Use when user requests any task execution.
+description: Điều phối toàn bộ hệ thống Archon, phân phối tasks cho appropriate workers với appropriate skills. Use when user requests any task execution.
 ---
 ```
 # Parent Orchestrator Skill
-Skill điều phối toàn bộ hệ thống Virtual Software House, phân phối tasks cho appropriate workers với appropriate skills.
+Skill điều phối toàn bộ hệ thống Archon, phân phối tasks cho appropriate workers với appropriate skills.
 
 ## When to Use
 - Khi người dùng yêu cầu thực hiện bất kỳ task nào
@@ -950,7 +950,7 @@ if __name__ == "__main__":
 ```python
 """
 init_project.py
-Purpose: Initialize project structure for Virtual Software House
+Purpose: Initialize project structure for Archon
 Usage: python ~/.cursor/skills/initialization/scripts/init_project.py [--project-name NAME] [--goal GOAL]
 Arguments:
   --project-name: Name of the project
