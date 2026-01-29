@@ -446,22 +446,25 @@ function lazyLoadContext(filePath) {
 
 ### Context Updates
 
-**Script**: `cursor/skills/update-project/scripts/update_project.py`
+**LLM-Driven Skill**: `cursor/skills/update-project/`
 
-**Functions**:
-- `update_structure()`: Ensure directories exist
-- `update_templates()`: Sync templates
-- `update_context_map()`: Update navigation
-- `sync_all()`: Perform all updates
+**Capabilities**:
+- Analyzes current project structure requirements
+- Creates missing directories following established patterns
+- Updates context files with current information
+- Synchronizes templates to appropriate locations
+- Validates all changes and provides status reports
 
 ### Report Generation
 
-**Script**: `cursor/skills/report/scripts/generate_report.py`
+**LLM-Driven Skill**: `cursor/skills/report/`
 
-**Functionality**:
-- Reads project state from contexts
-- Generates reports in multiple formats
-- Analyzes progress and blockers
+**Capabilities**:
+- Reads and synthesizes information from multiple context sources
+- Applies business logic to assess project health and status
+- Generates comprehensive reports with actionable insights
+- Adapts content and format based on audience and purpose
+- Focuses on key decisions and next steps using 80/20 rule
 - Creates visualizations
 
 ## Monitoring and Maintenance

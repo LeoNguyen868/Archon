@@ -225,9 +225,14 @@ cursor/skills/api-design/assets/
 {ERROR_RESPONSES}
 ```
 
-### Step 5: Add Automation Scripts (Optional)
+### Step 5: Add Simple Automation Scripts (Optional - Use Sparingly)
 
-**Python Scripts for Complex Logic**:
+**Guideline**: Prefer LLM-driven instructions over complex scripts. Only use scripts for:
+- Simple, deterministic operations
+- Well-defined data transformations
+- File system operations that don't require complex logic
+
+**Python Scripts for Deterministic Operations**:
 ```python
 # cursor/skills/api-design/scripts/generate_openapi.py
 import json
@@ -272,7 +277,7 @@ touch docs/api/changelog.md
 1. Test skill with different workers
 2. Verify context integration
 3. Check template rendering
-4. Validate script execution
+4. Validate LLM instruction execution (if scripts are used)
 
 ### Step 7: Document and Share
 
@@ -408,7 +413,44 @@ Use the following template structure:
 ```
 ```
 
-### Script-Heavy Skills
+### LLM-Driven Skills (Recommended)
+
+**Intelligence-First Approach**:
+```markdown
+## Instructions
+
+### 1. Context Analysis
+Analyze the current situation by reading relevant files and understanding requirements:
+- Read project context and current state
+- Identify stakeholders and their needs
+- Assess constraints and opportunities
+
+### 2. Strategic Planning
+Develop approach based on analysis:
+- Determine optimal strategy for the task
+- Consider multiple alternatives and trade-offs
+- Plan execution steps with clear milestones
+
+### 3. Intelligent Execution
+Execute with adaptability:
+- Apply business logic and best practices
+- Handle edge cases intelligently
+- Maintain context awareness throughout
+
+### 4. Quality Assurance
+Validate results:
+- Check against requirements and constraints
+- Ensure consistency with existing patterns
+- Verify stakeholder satisfaction
+```
+
+**Advantages of LLM-Driven Skills**:
+- **Adaptability**: Handle unexpected situations and requirements
+- **Context Awareness**: Understand project semantics and business impact
+- **Error Recovery**: Intelligent handling of edge cases and failures
+- **Self-Documentation**: Transparent reasoning and decision processes
+
+### Script-Heavy Skills (Use Only for Deterministic Operations)
 
 **Complex Automation**:
 ```markdown

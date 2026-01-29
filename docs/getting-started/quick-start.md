@@ -185,12 +185,14 @@ Define specialized workers in `cursor/agents/`.
 ### Integration with CI/CD
 
 ```bash
-# Update project context after CI
-python cursor/skills/update-project/scripts/update_project.py
+# Update project context after CI (via LLM skill)
+/update-project sync project structure and context files
 
-# Generate reports
-python cursor/skills/report/scripts/generate_report.py
+# Generate progress reports (via LLM skill)
+/report create comprehensive progress report
 ```
+
+**Note**: Skills now use LLM-driven execution instead of scripts, providing better adaptability and context awareness.
 
 ## Troubleshooting
 

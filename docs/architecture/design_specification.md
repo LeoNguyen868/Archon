@@ -1298,204 +1298,80 @@ python ~/.cursor/skills/initialization/scripts/init_project.py --project-name "M
 
 ---
 
-#### 3.3.2 update_project.py
+#### 3.3.2 LLM-Driven Project Updates
 
 **Mục tiêu:** Update project structure and templates
 
-**Pseudo-code:**
+**LLM-Driven Execution:**
 
-```python
-"""
-update_project.py
-Purpose: Update project structure and templates
-Usage: python ~/.cursor/skills/update-project/scripts/update_project.py [--action ACTION] [--target TARGET]
-Arguments:
-  --action: update_structure|update_templates|update_context_map
-  --target: Target to update
-Output: Project updated
-"""
+Instead of complex scripts, the update-project skill now uses detailed instructions that guide LLM agents through systematic project structure updates:
 
-import os
-import sys
-import logging
-from typing import Dict, Any
+**Core Process:**
+1. **Analysis**: Review current project structure against required directories
+2. **Creation**: Create missing directories following established patterns
+3. **Synchronization**: Update context files with current information
+4. **Validation**: Verify all updates completed successfully
 
-# Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s'
-)
-logger = logging.getLogger(__name__)
-
-def main():
-    """Main execution function."""
-    try:
-        args = parse_arguments()
-        
-        logger.info(f"Updating project: {args['action']}")
-        
-        # Execute action
-        if args['action'] == 'update_structure':
-            result = update_structure()
-        elif args['action'] == 'update_templates':
-            result = update_templates()
-        elif args['action'] == 'update_context_map':
-            result = update_context_map()
-        else:
-            raise ValueError(f"Unknown action: {args['action']}")
-        
-        logger.info("Project update complete!")
-        return result
-        
-    except Exception as e:
-        logger.error(f"Error: {e}")
-        sys.exit(1)
-
-def parse_arguments() -> Dict[str, Any]:
-    """Parse command line arguments."""
-    import argparse
-    
-    parser = argparse.ArgumentParser(description='Update project structure')
-    parser.add_argument('--action', type=str, required=True,
-                       choices=['update_structure', 'update_templates', 'update_context_map'])
-    parser.add_argument('--target', type=str, help='Target to update')
-    
-    return vars(parser.parse_args())
-
-def update_structure() -> Dict[str, Any]:
-    """Update project structure."""
-    # Implementation
-    pass
-
-def update_templates() -> Dict[str, Any]:
-    """Update templates."""
-    # Implementation
-    pass
-
-def update_context_map() -> Dict[str, Any]:
-    """Update context map."""
-    # Implementation
-    pass
-
-if __name__ == "__main__":
-    main()
-```
+**Key Advantages:**
+- **Flexibility**: LLM can adapt to project-specific requirements
+- **Context Awareness**: Understands project semantics, not just file operations
+- **Error Recovery**: Can handle unexpected situations intelligently
+- **Documentation**: Self-documenting process with clear reasoning
 
 ---
 
-#### 3.3.3 generate_report.py
+#### 3.3.3 LLM-Driven Report Generation
 
 **Mục tiêu:** Generate progress report
 
-**Pseudo-code:**
+**LLM-Driven Report Generation:**
 
-```python
-"""
-generate_report.py
-Purpose: Generate progress report
-Usage: python ~/.cursor/skills/report/scripts/generate_report.py [--format FORMAT]
-Arguments:
-  --format: markdown|html
-Output: Progress report
-"""
+The report skill now uses comprehensive instructions that guide LLM agents through intelligent report creation:
 
-import os
-import sys
-import logging
-from typing import Dict, Any
+**Intelligence-Driven Process:**
+1. **Context Gathering**: Read and understand multiple data sources
+2. **Health Assessment**: Evaluate project status using business logic
+3. **Information Synthesis**: Apply 80/20 rule for actionable insights
+4. **Structured Reporting**: Generate comprehensive, stakeholder-appropriate reports
 
-# Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s'
-)
-logger = logging.getLogger(__name__)
-
-def main():
-    """Main execution function."""
-    try:
-        args = parse_arguments()
-        
-        logger.info("Generating progress report...")
-        
-        # Read project state
-        project_state = read_project_state()
-        
-        # Generate report
-        report = generate_report(project_state, args['format'])
-        
-        # Save report
-        save_report(report, args['format'])
-        
-        logger.info("Report generated!")
-        return report
-        
-    except Exception as e:
-        logger.error(f"Error: {e}")
-        sys.exit(1)
-
-def parse_arguments() -> Dict[str, Any]:
-    """Parse command line arguments."""
-    import argparse
-    
-    parser = argparse.ArgumentParser(description='Generate progress report')
-    parser.add_argument('--format', type=str, default='markdown',
-                       choices=['markdown', 'html'])
-    
-    return vars(parser.parse_args())
-
-def read_project_state() -> Dict[str, Any]:
-    """Read project state from files."""
-    # Read project_context_map.md
-    # Read current_progress.md
-    # Read active.md
-    # Read sprint_backlog.md
-    pass
-
-def generate_report(state: Dict[str, Any], format: str) -> str:
-    """Generate report in specified format."""
-    # Implementation
-    pass
-
-def save_report(report: str, format: str):
-    """Save report to file."""
-    # Implementation
-    pass
-
-if __name__ == "__main__":
-    main()
-```
+**Key Advantages:**
+- **Context Understanding**: Comprehends project semantics and business impact
+- **Dynamic Analysis**: Adapts report content based on project phase and audience
+- **Actionable Insights**: Focuses on decisions and next steps, not just data
+- **Stakeholder Communication**: Uses appropriate language and structure for different audiences
 
 ---
 
-### 3.4 Script Integration with Skills
+### 3.4 LLM-Driven Skill Execution
 
-**Integration Pattern:**
+**Intelligence-First Approach:**
 
+Instead of rigid scripts, skills now use detailed instructions that enable LLM agents to perform tasks intelligently:
+
+**Execution Pattern:**
 ```python
-# Pseudo-code cho skill update-project
-def execute_update_project_skill():
-    # Check if script exists
-    if not os.path.exists("update_project.py"):
-        raise FileNotFoundError("update_project.py not found")
-    
-    # Execute script
-    result = subprocess.run(
-        ["python", "update_project.py", "--action", "update_structure"],
-        capture_output=True,
-        text=True
-    )
-    
-    # Check result
-    if result.returncode != 0:
-        raise RuntimeError(f"Script failed: {result.stderr}")
-    
-    # Return result
-    return {
-        "status": "success",
-        "output": result.stdout
-    }
+# LLM-driven skill execution
+def execute_skill_with_llm(skill_name, context, task):
+    # LLM reads detailed instructions from SKILL.md
+    instructions = read_skill_instructions(skill_name)
+
+    # LLM analyzes context and task requirements
+    analysis = llm_analyze_context(context, task, instructions)
+
+    # LLM performs task using reasoning capabilities
+    result = llm_execute_task(analysis, instructions)
+
+    # LLM validates and formats output
+    validated_result = llm_validate_output(result, instructions)
+
+    return validated_result
 ```
+
+**Key Advantages:**
+- **Adaptability**: Handle unexpected situations and edge cases
+- **Context Awareness**: Understand project semantics and business logic
+- **Error Recovery**: Intelligent handling of failures and inconsistencies
+- **Self-Documentation**: Process reasoning is transparent and explainable
 
 ---
 
@@ -1654,11 +1530,11 @@ def execute_with_fallback(worker, skill, context):
 - [ ] Integrate with skills
 - [ ] Test delegation
 
-### Phase 5: Automation Scripts (Tuần 9-10)
-- [ ] Viết update_project.py
-- [ ] Viết generate_report.py
-- [ ] Integrate with skills
-- [ ] Test automation
+### Phase 5: LLM-Driven Skills Enhancement (Tuần 9-10)
+- [ ] Enhance update-project skill with detailed LLM instructions
+- [ ] Enhance report skill with comprehensive analysis capabilities
+- [ ] Test LLM-driven execution
+- [ ] Validate skill adaptability and intelligence
 
 ### Phase 6: Integration (Tuần 11-12)
 - [ ] Integrate parent-orchestrator with workers
