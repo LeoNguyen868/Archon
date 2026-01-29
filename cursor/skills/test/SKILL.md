@@ -27,11 +27,17 @@ Skill for writing and running tests to ensure code quality and functionality.
     1. Run the test suite using project's test framework.
     2. Verify all tests pass before reporting.
     3. Report test coverage if required.
+- **Documentation:**
+    1. **Update Changelog:** MANDATORY - After completing the task, update changelog at `/.project_contexts/dev/change_logs/[YYYY-MM-DD].md` with entry describing test work completed.
+    2. **Update Progress:** MANDATORY - Update `/.project_contexts/management/current_progress.md` to reflect completed testing work.
 - **Output:**
     - Test files
     - Test results (passed/failed count)
     - Coverage report (if available)
+    - Changelog entry (MANDATORY)
+    - Progress update (MANDATORY)
 - **Constraints:**
     - Tests must be deterministic (no flaky tests).
     - Do not skip failing tests without documenting the reason.
     - Tests should not depend on external services unless mocked.
+- **Post-Task Requirements:** Before returning to orchestrator, ensure changelog and progress files are updated.

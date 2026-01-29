@@ -27,13 +27,16 @@ Skill for writing production code according to technical specifications and impl
     2. Run linting and formatting tools.
     3. Ensure no secrets or sensitive data in code.
 - **Documentation:**
-    1. Update changelog in `/.project_contexts/dev/change_logs/`.
+    1. **Update Changelog:** MANDATORY - Update changelog at `/.project_contexts/dev/change_logs/[YYYY-MM-DD].md` with detailed entry describing code changes, files modified, and impact.
     2. Update documentation if API changes.
+    3. **Update Progress:** MANDATORY - Update `/.project_contexts/management/current_progress.md` to reflect completed implementation work.
 - **Output:**
     - Working code files
     - Unit tests
-    - Changelog entries
+    - Changelog entry (MANDATORY)
+    - Progress update (MANDATORY)
 - **Constraints:**
     - Follow the Tech Spec exactly. If changes are needed, escalate to Tech Consultant first.
     - Report blockers immediately to Parent Agent.
     - Do not merge/commit without review approval.
+- **Post-Task Requirements:** Before returning to orchestrator, ensure changelog and progress files are updated. Changelog must include: date, task description, files changed, and impact summary.

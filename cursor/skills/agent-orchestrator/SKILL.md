@@ -67,12 +67,55 @@ Follow the OODA Loop for every request:
     - **Task:** [Detailed Task Description]
     - **Context:** [Required files and context paths]
     - **Constraints:** [Specific limits or rules]
+- **CRITICAL:** After delegating, you MUST wait for the worker's response. DO NOT immediately ask the user for requirements or feedback.
+
+### 5. Process Worker Response (NEW - CRITICAL)
+- **Action:** When worker returns with results, process the response systematically:
+    1. **Receive Response:** Wait for worker to complete and return structured results
+    2. **Verify Output:** Check if output matches expected format and requirements
+    3. **Check Artifacts:** Verify that required artifacts were created (changelogs, documents, code, etc.)
+    4. **Validate Quality:** Ensure output meets acceptance criteria
+    5. **Iterate if Needed:** If verification fails:
+        - Identify specific issues
+        - Provide clear feedback to the SAME worker
+        - Delegate again with refined requirements
+        - DO NOT ask user unless iteration fails 3 times or critical blocker occurs
+    6. **Integrate Results:** Once verified:
+        - Update context files if needed
+        - Determine next step in workflow
+        - Continue orchestration or present final result to user
 
 ## Verification
-- After the worker returns, verify the output against the `expected_output`.
-- If the output is a document, check if it follows the required template.
-- If the output is code, check if tests were run.
-- **NEW:** Verify that the worker used only the skills specified in the Required Skill field.
+After the worker returns, perform comprehensive verification:
+
+1. **Output Verification:**
+   - Verify the output against the `expected_output`.
+   - If the output is a document, check if it follows the required template.
+   - If the output is code, check if tests were run.
+
+2. **Artifact Verification (MANDATORY):**
+   - **Changelog Check:** Verify that changelog entry was created at `/.project_contexts/dev/change_logs/[YYYY-MM-DD].md`
+   - **Progress Check:** Verify that `/.project_contexts/management/current_progress.md` was updated
+   - **File Verification:** Check that all expected output files were created/modified
+
+3. **Skill Usage Verification:**
+   - Verify that the worker used only the skills specified in the Required Skill field.
+
+4. **Quality Verification:**
+   - Check that changelog entry includes: task description, files changed, and impact
+   - Verify progress update reflects current work status
+
+5. **Iteration Decision:**
+   - If verification fails, iterate with the worker - DO NOT immediately escalate to user.
+   - Only escalate to user after 3 failed iterations or critical blocker.
+
+## Iteration Pattern (NEW)
+When worker output doesn't meet requirements:
+1. **Identify Issue:** Clearly state what's missing or incorrect
+2. **Provide Feedback:** Give specific, actionable feedback to worker
+3. **Re-delegate:** Use same worker with refined task description
+4. **Limit Iterations:** Maximum 3 iterations before escalating to user
+5. **Escalate Only When:** Critical blocker, 3 failed iterations, or user intervention required
 
 ## Skill Isolation Enforcement
 **Added for BACKLOG-002:**

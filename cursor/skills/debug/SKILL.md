@@ -18,4 +18,6 @@ Skill for analyzing errors, tracing root causes, and proposing fixes.
 - **Hypothesize:** Formulate a hypothesis about the cause.
 - **Verify:** Test the hypothesis.
 - **Fix:** Propose a fix and verify it.
-- **Report:** Record the cause and fix in `change_logs`.
+- **Report:** MANDATORY - Record the cause and fix in changelog at `/.project_contexts/dev/change_logs/[YYYY-MM-DD].md`.
+- **Update Progress:** MANDATORY - Update `/.project_contexts/management/current_progress.md` to reflect completed debugging work.
+- **Post-Task Requirements:** Before returning to orchestrator, ensure changelog and progress files are updated with detailed root cause analysis and fix description.
