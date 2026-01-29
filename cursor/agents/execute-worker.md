@@ -36,11 +36,21 @@ Context: /.project_contexts/dev/
 Output: Code changes, Test results
 
 ## Return Format
-```json
-{
-  "status": "success",
-  "summary": "Implemented feature X. Tests passed.",
-  "changed_files": ["file1.py", "file2.py"],
-  "test_results": "Passed: 10, Failed: 0"
-}
+Provide outputs in human-readable Markdown format:
+
+```markdown
+## Summary
+Implemented feature X. Tests passed.
+
+## Changes Made
+- file1.py: Updated function logic
+- file2.py: Added new module
+
+## Test Results
+- Passed: 10
+- Failed: 0
+- Coverage: 95%
+
+## Status
+Completed successfully
 ```

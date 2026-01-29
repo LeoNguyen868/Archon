@@ -4,9 +4,9 @@ generate_report.py
 Purpose: Generate progress reports for Archon
 Usage: python generate_report.py [--format FORMAT] [--output OUTPUT]
 Arguments:
-  --format: markdown|json|html (default: markdown)
+  --format: markdown|html (default: markdown)
   --output: Output file path (optional, defaults to stdout)
-Output: Progress report in specified format
+Output: Progress report in specified format (Markdown or HTML; JSON output is deprecated)
 """
 
 import os
@@ -60,8 +60,8 @@ def parse_arguments() -> Dict[str, Any]:
     """Parse command line arguments."""
     parser = argparse.ArgumentParser(description='Generate progress report')
     parser.add_argument('--format', type=str, default='markdown',
-                       choices=['markdown', 'json', 'html'],
-                       help='Output format')
+                       choices=['markdown', 'html'],
+                       help='Output format (markdown or html)')
     parser.add_argument('--output', type=str, help='Output file path')
     
     return vars(parser.parse_args())
@@ -121,12 +121,10 @@ def generate_report(state: Dict[str, Any], format: str) -> str:
     """Generate report in specified format."""
     if format == 'markdown':
         return generate_markdown_report(state)
-    elif format == 'json':
-        return generate_json_report(state)
     elif format == 'html':
         return generate_html_report(state)
     else:
-        raise ValueError(f"Unknown format: {format}")
+        raise ValueError(f"Unknown or unsupported format: {format}")
 
 
 def generate_markdown_report(state: Dict[str, Any]) -> str:
@@ -184,20 +182,6 @@ def generate_markdown_report(state: Dict[str, Any]) -> str:
         report.append("*No change logs found.*")
     
     return '\n'.join(report)
-
-
-def generate_json_report(state: Dict[str, Any]) -> str:
-    """Generate JSON progress report."""
-    report = {
-        "generated_at": datetime.now().isoformat(),
-        "status": "on_track" if len(state.get("blockers", [])) == 0 else "at_risk",
-        "blocker_count": len(state.get("blockers", [])),
-        "has_active_tasks": state.get("active_tasks") is not None,
-        "has_sprint_backlog": state.get("sprint_backlog") is not None,
-        "recent_changes_count": len(state.get("change_logs", [])),
-        "blockers": [b["file"] for b in state.get("blockers", [])],
-    }
-    return json.dumps(report, indent=2)
 
 
 def generate_html_report(state: Dict[str, Any]) -> str:

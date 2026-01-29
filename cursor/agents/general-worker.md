@@ -35,10 +35,15 @@ Context: /.project_contexts/management/
 Output: Reports, Findings
 
 ## Return Format
-```json
-{
-  "status": "success",
-  "summary": "Report generated",
-  "output_file": "/path/to/report.md"
-}
+Provide outputs in human-readable Markdown format:
+
+```markdown
+## Summary
+Report generated successfully
+
+## Output Files
+- /path/to/report.md
+
+## Status
+Completed
 ```

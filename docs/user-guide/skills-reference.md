@@ -317,7 +317,7 @@ Archon includes **15 core skills** organized into three categories:
 - Communicating with stakeholders
 
 **Key Features**:
-- Multiple report formats (markdown, JSON, HTML)
+- Multiple report formats (markdown, HTML)
 - Automated data collection
 - Progress visualization
 - Stakeholder communication templates

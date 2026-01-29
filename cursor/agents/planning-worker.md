@@ -35,7 +35,7 @@ Worker specialized in planning, requirement analysis, and solution design.
 ## Configuration
 Skills: [po-product-owner, tech-consultant, pm-project-manager]
 Context: /.project_contexts/
-Output: Markdown documents, JSON tickets
+Output: Markdown documents, Markdown tickets
 
 ## Examples
 
@@ -52,11 +52,16 @@ User: "Design a solution for Google Login feature"
 Planning Worker: "Ok, I will code it right away" (Violation: not planning worker's responsibility)
 
 ## Return Format
-```json
-{
-  "status": "success",
-  "summary": "Completed planning for feature X",
-  "artifacts": ["/path/to/user_story.md", "/path/to/tech_spec.md"],
-  "next_steps": "Ready for execution"
-}
+Provide outputs in human-readable Markdown (not JSON). Example:
+
+```markdown
+## Summary
+Completed planning for feature X
+
+## Artifacts
+- /path/to/user_story.md
+- /path/to/tech_spec.md
+
+## Next Steps
+Ready for execution
 ```

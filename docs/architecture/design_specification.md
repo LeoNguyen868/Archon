@@ -184,7 +184,7 @@ Skill điều phối toàn bộ hệ thống Archon, phân phối tasks cho appr
 - **Decide:** Ra quyết định về việc delegate cho worker nào
 - **Act:** Thực thi delegation với context đầy đủ
 - **Constraints:** Không trực tiếp viết code, luôn verify kết quả trước khi accept
-- **Output Format:** Trả về JSON với decision, worker, skill, context, expected_output
+- **Output Format:** Trả về human-readable format với decision, worker, skill, context, expected_output
 - **Verification:** Kiểm tra worker được delegate đúng skill và context được truyền đầy đủ
 - Sử dụng ask questions tool nếu cần clarify requirements với user
 
@@ -291,7 +291,7 @@ ROLE → CONTEXT → TASK → CONSTRAINTS → FORMAT → ACCEPTANCE
 | **CONTEXT** | `/.project_contexts/project_context_map.md`, User request, Available workers/skills |
 | **TASK** | Phân tích user request và điều phối cho appropriate worker với appropriate skill |
 | **CONSTRAINTS** | Không trực tiếp code, Human-in-the-loop, Verify trước khi accept |
-| **FORMAT** | JSON với decision, worker, skill, context, expected_output |
+| **FORMAT** | Human-readable format với decision, worker, skill, context, expected_output |
 | **ACCEPTANCE** | Worker được delegate đúng, Context đầy đủ, Kết quả được verify |
 
 ---
@@ -780,7 +780,7 @@ is_background: false
 ## Configuration
 Skills: [po-product-owner, tech-consultant, pm-project-manager]
 Context: /.project_contexts/
-Output: Markdown documents, JSON tickets
+Output: Markdown documents, Markdown tickets
 
 ## Examples
 
@@ -797,17 +797,22 @@ User: "Thiết kế giải pháp cho tính năng Login bằng Google"
 Planning Worker: "Ok tôi sẽ code ngay" (Vi phạm: không phải responsibility của planning worker)
 
 ## Return Format
-```json
-{
-  "status": "success|error",
-  "skill_used": "skill-name",
-  "output": {
-    "documents": [...],
-    "tickets": [...],
-    "decisions": [...]
-  },
-  "summary": "..."
-}
+Provide outputs in human-readable Markdown format:
+
+```markdown
+## Status
+success
+
+## Skill Used
+skill-name
+
+## Output
+- **Documents:** [list of document paths]
+- **Tickets:** [list of ticket paths]
+- **Decisions:** [list of decisions made]
+
+## Summary
+Brief summary of completed work
 ```
 
 ---
@@ -826,7 +831,7 @@ Planning Worker: "Ok tôi sẽ code ngay" (Vi phạm: không phải responsibili
 
 1. **Dependency Check:** Scripts phải check và report missing dependencies
 2. **Graceful Degradation:** Nếu dependency thiếu, đề xuất installation steps
-3. **Structured Error Output:** Return JSON error format cho agent parsing
+3. **Structured Error Output:** Return human-readable error format cho agent parsing
 4. **Recovery Suggestions:** Agent phải analyze stderr và propose fixes
 
 **Agent-Script Integration Pattern:**
@@ -1390,7 +1395,7 @@ generate_report.py
 Purpose: Generate progress report
 Usage: python ~/.cursor/skills/report/scripts/generate_report.py [--format FORMAT]
 Arguments:
-  --format: markdown|json|html
+  --format: markdown|html
 Output: Progress report
 """
 
@@ -1435,7 +1440,7 @@ def parse_arguments() -> Dict[str, Any]:
     
     parser = argparse.ArgumentParser(description='Generate progress report')
     parser.add_argument('--format', type=str, default='markdown',
-                       choices=['markdown', 'json', 'html'])
+                       choices=['markdown', 'html'])
     
     return vars(parser.parse_args())
 

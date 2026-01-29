@@ -29,8 +29,6 @@ Skill for synthesizing information, creating progress reports, and status update
 ## Usage
 Run Python script to generate report:
 `python ~/.cursor/skills/report/scripts/generate_report.py --format markdown --output report.md`
-or with different format:
-`python ~/.cursor/skills/report/scripts/generate_report.py --format json --output report.json`
 
 ## Notes
 - Script must be executed from the skill's root directory

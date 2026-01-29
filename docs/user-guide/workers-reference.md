@@ -204,7 +204,7 @@ is_background: true
 - Generates comprehensive reports
 - Identifies trends and recommendations
 
-**Output**: Markdown/HTML/JSON reports
+**Output**: Markdown/HTML reports
 
 #### 2. Research Tasks
 ```
@@ -232,7 +232,7 @@ is_background: true
 
 ### Best Practices
 
-- **Specify report formats** (markdown, JSON, HTML)
+- **Specify report formats** (markdown, HTML)
 - **Define research scope** clearly
 - **Include timelines** for maintenance tasks
 - **Request specific outputs** for research
@@ -302,15 +302,21 @@ Workers access context through:
 
 ### Output Structure
 
-Workers return structured results:
+Workers return structured results in human-readable format:
 
-```json
-{
-  "status": "success|error",
-  "summary": "Brief description of outcome",
-  "artifacts": ["list of created files"],
-  "next_steps": "Recommended follow-up actions"
-}
+```markdown
+## Status
+success
+
+## Summary
+Brief description of outcome
+
+## Artifacts
+- /path/to/file1.md
+- /path/to/file2.py
+
+## Next Steps
+Recommended follow-up actions
 ```
 
 ## Configuration and Customization
