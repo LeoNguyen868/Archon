@@ -1,7 +1,7 @@
 # Active Implementation Ticket: DOC-001
 
 **Status:** IN_PROGRESS
-**Assignee:** planning-worker
+**Assignee:** LeoNguyen
 **Created:** 2026-01-29
 
 ## Context
@@ -29,6 +29,7 @@ First task in comprehensive project documentation initiative. Need to analyze th
 - [ ] OODA loop implementation points documented
 - [ ] Worker system patterns analyzed
 - [ ] Context management system understood
+- Note: Final acceptance requires explicit approval/acknowledgement from owner: LeoNguyen.
 
 ## Plan
 1. Review project structure and key directories
@@ -37,3 +38,17 @@ First task in comprehensive project documentation initiative. Need to analyze th
 4. Document worker orchestration patterns
 5. Identify documentation gaps
 6. Create inventory matrix for next steps
+
+## New Backlog Items
+
+- **TICKET: OODA_AUDIT**
+  - Priority: P0
+  - Owner: LeoNguyen
+  - Status: TODO
+  - Summary: Full audit of OODA loop implementation, decision points, and potential regressions during maintenance. Deliver: audit report + recommended fixes.
+
+- **TICKET: DOCS_CI**
+  - Priority: P0
+  - Owner: LeoNguyen
+  - Status: TODO
+  - Summary: Implement docs CI: linting, link-checks, build verification, and automated deployment of docs artifacts.

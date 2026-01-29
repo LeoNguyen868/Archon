@@ -57,3 +57,32 @@ We will implement a hierarchical documentation structure with four main categori
 - Integrate documentation validation into CI/CD pipeline
 - Establish documentation maintenance as part of development workflow
 - Create contributor documentation templates to reduce maintenance burden
+
+## Appendix: Recommendation — Docs CI & Tooling (proposed)
+
+**Status:** Proposed
+**Date:** 2026-01-29
+
+### Problem
+Documentation risks becoming stale; manual checks are error-prone during maintenance.
+
+### Proposed Decision
+Integrate a Docs CI pipeline (owner: LeoNguyen) that runs on PRs and main:
+- markdown linting (e.g., markdownlint)
+- link-checks (internal/external)
+- build validation (e.g., MkDocs or a simple static build to ensure no broken includes)
+- optional: generate simple site artifact for review (preview)
+
+### Rationale
+- Early validation prevents regressions to docs during maintenance.
+- Automated checks reduce reviewer burden and keep contributor experience smooth.
+- Tooling choices remain lightweight to minimize infra overhead.
+
+### Consequences
+- Upfront work to add CI steps; long-term reduction in doc regression risk.
+- Requires owner approval to enable CI secrets/deployment.
+
+### Next Steps
+1. Add CI workflow skeleton for docs (GitHub Actions) — include lint + linkcheck + build.
+2. Configure owners and required reviewers (Owner: LeoNguyen).
+3. Iterate based on initial runs and contributor feedback.

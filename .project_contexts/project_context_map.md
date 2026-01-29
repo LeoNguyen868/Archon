@@ -1,11 +1,14 @@
 # Project Context Map
 > Last Updated: 2026-01-29
 
+## 0. Ownership
+- **Owner:** LeoNguyen
+
 ## 1. Project Overview
 - **Name:** Archon
 - **Tagline:** The Socratic Orchestrator for AI Development Teams.
 - **The One Thing:** Building a Virtual Software House system for AI Agent orchestration.
-- **Current Phase:** INCEPTION
+- **Current Phase:** MAINTENANCE
 
 ## 2. Key Objectives
 - [x] Initialize project structure and foundational skills.
@@ -14,7 +17,7 @@
 - [ ] Create automation scripts for project lifecycle management.
 
 ## 3. Active Context
-- **Current Focus:** Project initialization and setting up the core repository structure.
+- **Current Focus:** Maintenance & Docs Sync
 - **Active Workers:** Parent Orchestrator
 
 ## 4. System Architecture (High Level)
