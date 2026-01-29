@@ -1,9 +1,8 @@
 ---
-name: general-worker
-description: "Use for general tasks like project updates, progress reporting, and research. Handles automation scripts and report generation. Uses technical skills: update-project, report, research."
-model: auto
-readonly: false
 is_background: true
+name: general-worker
+model: inherit
+description: Use for general tasks like project updates, progress reporting, and research. Handles automation scripts and report generation. Uses technical skills: update-project, report, research.
 ---
 
 # General Worker

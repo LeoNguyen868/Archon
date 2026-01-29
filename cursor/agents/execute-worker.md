@@ -1,9 +1,8 @@
 ---
-name: execute-worker
-description: "Use for coding, testing, and implementation tasks. Handles writing code, running tests, and implementing features according to tech specs. Uses technical skills: coding, code-analysis, frontend-design, test."
-model: auto
-readonly: false
 is_background: false
+name: execute-worker
+model: inherit
+description: Use for coding, testing, and implementation tasks. Handles writing code, running tests, and implementing features according to tech specs. Uses technical skills: coding, code-analysis, frontend-design, test.
 ---
 
 # Execute Worker
