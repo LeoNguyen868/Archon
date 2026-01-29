@@ -46,7 +46,7 @@ Dựa trên usecase_requirement_spec.md và best practices:
 
 **Danh sách:**
 
-1. **parent-orchestrator Skill**
+1. **agent-orchestrator Skill**
    - **Vai trò:** Điều phối toàn bộ hệ thống, phân phối tasks cho workers
    - **Trigger:** Khi người dùng yêu cầu thực hiện bất kỳ task nào
    - **Mental Model:** OODA Loop (Observe-Orient-Decide-Act)
@@ -161,15 +161,15 @@ Detailed instructions for the agent.
 - Use the ask questions tool if you need to clarify requirements with the user
 ```
 
-**Ví dụ thực tế - parent-orchestrator Skill:**
+**Ví dụ thực tế - agent-orchestrator Skill:**
 
 ```markdown
 ---
-name: parent-orchestrator
+name: agent-orchestrator
 description: Điều phối toàn bộ hệ thống Archon, phân phối tasks cho appropriate workers với appropriate skills. Use when user requests any task execution.
 ---
 ```
-# Parent Orchestrator Skill
+# Agent Orchestrator Skill
 Skill điều phối toàn bộ hệ thống Archon, phân phối tasks cho appropriate workers với appropriate skills.
 
 ## When to Use
@@ -283,7 +283,7 @@ Sử dụng pattern này cho 90% development tasks:
 ROLE → CONTEXT → TASK → CONSTRAINTS → FORMAT → ACCEPTANCE
 ```
 
-**Áp dụng cho parent-orchestrator Skill:**
+**Áp dụng cho agent-orchestrator Skill:**
 
 | Component | Content |
 |-----------|---------|
@@ -322,7 +322,7 @@ ROLE → CONTEXT → TASK → CONSTRAINTS → FORMAT → ACCEPTANCE
 [REASONING] → Previous decisions made
 ```
 
-**Áp dụng cho parent-orchestrator Skill:**
+**Áp dụng cho agent-orchestrator Skill:**
 
 ```python
 # Pseudo-code cho context loading with pruning
@@ -330,7 +330,7 @@ def load_context_for_parent_orchestrator():
     context = {
         "GOAL": "Điều phối task cho appropriate worker",
         "SKILLS": [
-            "parent-orchestrator",
+            "agent-orchestrator",
             "tech-consultant",
             "po-product-owner",
             "pm-project-manager"
@@ -552,7 +552,7 @@ Dựa trên subagent-settings-best-practices.md, áp dụng 4 patterns:
 - Next step không predetermined
 - Tasks context-dependent và nuanced
 
-**Áp dụng cho:** parent-orchestrator skill
+**Áp dụng cho:** agent-orchestrator skill
 
 **Example:**
 ```
@@ -1386,7 +1386,7 @@ def execute_skill_with_llm(skill_name, context, task):
 ```
 1. User Request
    ↓
-2. Parent Agent (parent-orchestrator skill)
+2. Parent Agent (agent-orchestrator skill)
    - Observe: Read project_context_map.md
    - Orient: Task type = new feature
    - Decide: Delegate to Planning Worker with po-product-owner skill
@@ -1398,7 +1398,7 @@ def execute_skill_with_llm(skill_name, context, task):
    - Define acceptance criteria
    - Return result to Parent Agent
    ↓
-4. Parent Agent (parent-orchestrator skill)
+4. Parent Agent (agent-orchestrator skill)
    - Verify result
    - Decide: Delegate to Planning Worker with tech-consultant skill
    - Act: Delegate
@@ -1409,7 +1409,7 @@ def execute_skill_with_llm(skill_name, context, task):
    - Create tech specs
    - Return result to Parent Agent
    ↓
-6. Parent Agent (parent-orchestrator skill)
+6. Parent Agent (agent-orchestrator skill)
    - Verify result
    - Decide: Delegate to Planning Worker with pm-project-manager skill
    - Act: Delegate
@@ -1419,7 +1419,7 @@ def execute_skill_with_llm(skill_name, context, task):
    - Create tickets
    - Return result to Parent Agent
    ↓
-8. Parent Agent (parent-orchestrator skill)
+8. Parent Agent (agent-orchestrator skill)
    - Verify result
    - Decide: Delegate to Execute Worker with coding skill
    - Act: Delegate
@@ -1430,7 +1430,7 @@ def execute_skill_with_llm(skill_name, context, task):
    - Write changelog
    - Return result to Parent Agent
    ↓
-10. Parent Agent (parent-orchestrator skill)
+10. Parent Agent (agent-orchestrator skill)
     - Verify result
     - Present to user for review
     - User confirms commit
@@ -1508,7 +1508,7 @@ def execute_with_fallback(worker, skill, context):
 - [ ] Test initialization workflow
 
 ### Phase 2: High-Level Skills (Tuần 3-4)
-- [ ] Viết parent-orchestrator skill
+- [ ] Viết agent-orchestrator skill
 - [ ] Viết tech-consultant skill
 - [ ] Viết po-product-owner skill
 - [ ] Viết pm-project-manager skill
@@ -1537,7 +1537,7 @@ def execute_with_fallback(worker, skill, context):
 - [ ] Validate skill adaptability and intelligence
 
 ### Phase 6: Integration (Tuần 11-12)
-- [ ] Integrate parent-orchestrator with workers
+- [ ] Integrate agent-orchestrator with workers
 - [ ] Test end-to-end workflows
 - [ ] Document usage
 - [ ] Deploy

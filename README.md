@@ -9,7 +9,7 @@ Archon transforms your IDE into a specialized AI orchestration environment. It u
 
 ## Overview
 
-Archon is designed to bring order and structure to AI-driven development. By acting as a Parent Orchestrator, it ensures that every task is properly analyzed, planned, and reviewed before execution.
+Archon is designed to bring order and structure to AI-driven development. By acting as a Agent Orchestrator, it ensures that every task is properly analyzed, planned, and reviewed before execution.
 
 ### Key Features
 
@@ -68,9 +68,9 @@ This creates the `.project_contexts/` directory structure for context management
 
 ### Your First Task
 
-Try the parent orchestrator:
+Try the agent orchestrator:
 ```
-/parent-orchestrator create a simple todo app with React
+/agent-orchestrator create a simple todo app with React
 ```
 
 Archon will analyze requirements, design the solution, break it down into tasks, and guide implementation.
@@ -81,7 +81,7 @@ Archon will analyze requirements, design the solution, break it down into tasks,
 archon/
 ├── .cursor/                    # Cursor IDE configuration
 │   ├── skills/                 # Skills library (15 skills)
-│   │   ├── parent-orchestrator/
+│   │   ├── agent-orchestrator/
 │   │   ├── po-product-owner/
 │   │   ├── tech-consultant/
 │   │   ├── pm-project-manager/
@@ -193,7 +193,7 @@ Three specialized workers in isolated contexts:
 
 ### Feature Development
 ```
-/parent-orchestrator add user authentication to my web app
+/agent-orchestrator add user authentication to my web app
 ```
 
 ### Code Analysis

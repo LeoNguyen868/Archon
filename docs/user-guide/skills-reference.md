@@ -12,7 +12,7 @@ Archon includes **15 core skills** organized into three categories:
 
 ## High-Level Skills
 
-### 1. Parent Orchestrator
+### 1. Agent Orchestrator
 
 **Purpose**: System coordinator using OODA Loop and Socratic method
 
@@ -30,12 +30,12 @@ Archon includes **15 core skills** organized into three categories:
 
 **Usage**:
 ```
-/parent-orchestrator [task description]
+/agent-orchestrator [task description]
 ```
 
 **Example**:
 ```
-/parent-orchestrator create a user authentication system for my web app
+/agent-orchestrator create a user authentication system for my web app
 ```
 
 ### 2. Product Owner (PO)
@@ -378,7 +378,7 @@ Skills automatically access relevant context:
 #### Orchestrated Usage
 Parent orchestrator handles complex coordination:
 ```
-/parent-orchestrator build complete e-commerce checkout flow
+/agent-orchestrator build complete e-commerce checkout flow
 ```
 
 ## Skill Configuration

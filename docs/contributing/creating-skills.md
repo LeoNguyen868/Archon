@@ -18,7 +18,7 @@ Archon has three skill categories:
 
 #### 1. High-Level Skills (4 total)
 - **Purpose**: Strategic decision-making and coordination
-- **Examples**: `parent-orchestrator`, `po-product-owner`, `tech-consultant`
+- **Examples**: `agent-orchestrator`, `po-product-owner`, `tech-consultant`
 - **Characteristics**: Complex reasoning, multiple perspectives, long-term planning
 
 #### 2. Technical Skills (6 total)
@@ -587,7 +587,7 @@ python scripts/validate_api.py
 
 **Building Complex Solutions**:
 - Combine multiple skills for comprehensive solutions
-- Use parent orchestrator for complex workflows
+- Use agent orchestrator for complex workflows
 - Create skill chains for sequential processing
 
 Creating skills is both an art and a science. Focus on clarity, comprehensiveness, and practical value. Well-designed skills extend Archon's capabilities and improve the development experience for all users.

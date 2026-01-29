@@ -49,7 +49,7 @@ Archon asks "Is that true?" and "What is the real problem?" to ensure:
 │                    Cursor IDE                               │
 ├─────────────────────────────────────────────────────────────┤
 │  ┌─────────────────────────────────────────────────────┐    │
-│  │              Parent Orchestrator                    │    │
+│  │              Agent Orchestrator                    │    │
 │  │  ┌─────────────────────────────────────────────────┐ │    │
 │  │  │              OODA Loop                          │ │    │
 │  │  └─────────────────────────────────────────────────┘ │    │
@@ -77,7 +77,7 @@ Archon asks "Is that true?" and "What is the real problem?" to ensure:
 
 ## Component Details
 
-### Parent Orchestrator
+### Agent Orchestrator
 
 **Role**: System coordinator and decision maker
 
@@ -117,7 +117,7 @@ Archon uses three specialized worker types:
 **15 Core Skills** organized by category:
 
 #### High-Level Skills (4)
-1. **parent-orchestrator**: System coordination
+1. **agent-orchestrator**: System coordination
 2. **po-product-owner**: Requirements and user stories
 3. **tech-consultant**: Technical design and ADRs
 4. **pm-project-manager**: Task breakdown and planning
@@ -182,7 +182,7 @@ Archon uses three specialized worker types:
 ```
 User Request
     ↓
-Parent Orchestrator (Observe)
+Agent Orchestrator (Observe)
     ↓
 Context Analysis & Pruning
     ↓
@@ -274,7 +274,7 @@ Next Task Preparation
 - Test orchestration integration
 
 ### Custom Orchestration Patterns
-- Extend parent orchestrator logic
+- Extend agent orchestrator logic
 - Implement new decision-making flows
 - Add custom context management strategies
 

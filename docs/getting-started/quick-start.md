@@ -34,7 +34,7 @@ The migration script will:
 Open Cursor and check that Archon is loaded:
 1. Open Command Palette (`Cmd/Ctrl + Shift + P`)
 2. Type "Archon" to see available commands
-3. You should see parent-orchestrator and other skills
+3. You should see agent-orchestrator and other skills
 
 ## Your First Project
 
@@ -57,9 +57,9 @@ This creates the `.project_contexts/` directory structure for context management
 
 Let's create a simple todo application:
 
-1. **Start with Parent Orchestrator:**
+1. **Start with Agent Orchestrator:**
    ```
-   /parent-orchestrator I want to create a simple todo app with React
+   /agent-orchestrator I want to create a simple todo app with React
    ```
 
 2. **Archon will:**
@@ -105,7 +105,7 @@ Archon uses the **OODA Loop** for decision making:
 ### Feature Development
 
 ```
-/parent-orchestrator Add user authentication to my app
+/agent-orchestrator Add user authentication to my app
 ```
 
 Archon will:

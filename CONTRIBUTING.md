@@ -184,7 +184,7 @@ Any limitations or requirements.
 Skills are categorized into three types:
 
 1. **High-Level Skills** - Strategic decision making
-   - `parent-orchestrator`, `po-product-owner`, `tech-consultant`, `pm-project-manager`
+   - `agent-orchestrator`, `po-product-owner`, `tech-consultant`, `pm-project-manager`
 
 2. **Technical Skills** - Implementation and analysis
    - `coding`, `code-analysis`, `debug`, `test`, `review`, `frontend-design`

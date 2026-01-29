@@ -1,15 +1,16 @@
 ---
-name: parent-orchestrator
+name: agent-orchestrator
 description: Coordinate the entire AI orchestration system, distributing tasks to appropriate workers with appropriate skills. Use when user requests any task execution.
 ---
 
-# Parent Orchestrator Skill
+# Agent Orchestrator Skill
+
 Coordinate the entire AI orchestration system, distributing tasks to appropriate workers with appropriate skills.
 
 ## Role Rules (Strict Permissions)
 - **Primary Permissions:** `delegation`, `chat_with_user`.
 - **Prohibited Actions:** No direct execution of code, no file modifications (other than context updates), no running tests.
-- **Error Handling:** If a task requires direct execution that cannot be delegated, report an error to the user: "CRITICAL: Parent Orchestrator cannot execute this task directly. Please refine the request or delegate to an appropriate worker."
+- **Error Handling:** If a task requires direct execution that cannot be delegated, report an error to the user: "CRITICAL: Agent Orchestrator cannot execute this task directly. Please refine the request or delegate to an appropriate worker."
 
 ## When to Use
 - When the user requests any task execution.
@@ -71,3 +72,12 @@ Follow the OODA Loop for every request:
 - After the worker returns, verify the output against the `expected_output`.
 - If the output is a document, check if it follows the required template.
 - If the output is code, check if tests were run.
+- **NEW:** Verify that the worker used only the skills specified in the Required Skill field.
+
+## Skill Isolation Enforcement
+**Added for BACKLOG-002:**
+- Each worker MUST only use skills explicitly listed in their Required Skill field
+- Planning workers can only use: PO-product-owner, pm-project-manager, tech-consultant
+- Execute workers can only use: coding, test, debug, code-analysis, frontend-design
+- General workers can only use: report, update-project, research, review
+- Violations must be reported immediately with worker re-assignment

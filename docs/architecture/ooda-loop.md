@@ -16,9 +16,9 @@ Each cycle processes information faster than the opponent/adversary, creating a 
 
 ### Primary Implementation
 
-**Location**: `cursor/skills/parent-orchestrator/SKILL.md`
+**Location**: `cursor/skills/agent-orchestrator/SKILL.md`
 
-**Scope**: Used by the Parent Orchestrator for all major decisions
+**Scope**: Used by the Agent Orchestrator for all major decisions
 
 ### Secondary Implementations
 
@@ -290,7 +290,7 @@ Worker Operation:
 
 ### System Level
 
-Parent Orchestrator runs the master OODA loop:
+Agent Orchestrator runs the master OODA loop:
 
 ```
 System Coordination:

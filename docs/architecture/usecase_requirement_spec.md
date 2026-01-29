@@ -11,7 +11,7 @@
 
 **Actors:** 
 - Người dùng (PO/Owner)
-- Parent Agent (sử dụng skill **parent-orchestrator**)
+- Parent Agent (sử dụng skill **agent-orchestrator**)
 
 **Preconditions:** 
 - Không có cấu trúc `/.project_contexts/` tồn tại
@@ -19,7 +19,7 @@
 
 **Main Flow:**
 1. Người dùng gửi yêu cầu: "Khởi tạo dự án [Tên dự án]"
-2. Parent Agent kích hoạt skill **parent-orchestrator**
+2. Parent Agent kích hoạt skill **agent-orchestrator**
 3. Parent-orchestrator skill gọi action `initialize-project.md`
 4. Parent-orchestrator skill chạy script `init_project.py`:
    ```python
@@ -55,7 +55,7 @@
 9. Parent Agent cập nhật `project_context_map.md` (manual)
 10. Parent Agent báo cáo hoàn thành
 
-**Ghi chú:** Logic chi tiết của UC-01 được đặc tả trong skill **parent-orchestrator** (action `initialize-project.md` và script `init_project.py`).
+**Ghi chú:** Logic chi tiết của UC-01 được đặc tả trong skill **agent-orchestrator** (action `initialize-project.md` và script `init_project.py`).
 
 **Postconditions:**
 - Cấu trúc thư mục đầy đủ được tạo
@@ -84,7 +84,7 @@
 **Main Flow:**
 1. Người dùng mô tả yêu cầu tính năng
 2. Người dùng tương tác với Parent Agent
-3. Parent Agent kích hoạt skill **parent-orchestrator**
+3. Parent Agent kích hoạt skill **agent-orchestrator**
 4. Parent-orchestrator skill điều phối: gọi Planning Worker với skill **po-product-owner**
 5. Planning Worker (với PO Skill) áp dụng phương pháp Socratic:
    - Hỏi "Is that true?" - Xác thực giả định
@@ -105,7 +105,7 @@
 - Nếu yêu cầu mơ hồ: PO Skill tiếp tục hỏi cho đến khi rõ
 - Nếu yêu cầu không khả thi: PO Skill đề xuất phương án thay thế
 
-**Ghi chú:** User tương tác với Parent Agent -> Parent Agent gọi skill parent-orchestrator -> parent-orchestrator điều phối Planning Worker với skill po-product-owner.
+**Ghi chú:** User tương tác với Parent Agent -> Parent Agent gọi skill agent-orchestrator -> agent-orchestrator điều phối Planning Worker với skill po-product-owner.
 
 ---
 
@@ -122,7 +122,7 @@
 - `/.project_contexts/arch/` tồn tại
 
 **Main Flow:**
-1. Parent Agent kích hoạt skill **parent-orchestrator**
+1. Parent Agent kích hoạt skill **agent-orchestrator**
 2. Parent-orchestrator skill điều phối: gọi Planning Worker với skill **tech-consultant**
 3. Planning Worker (với Tech Consultant Skill) đọc User Story từ `/.project_contexts/pm/user_stories/`
 4. Tech Consultant phân tích tính khả thi:
@@ -151,7 +151,7 @@
 - Nếu yêu cầu không khả thi: Tech Consultant từ chối và đề xuất giải pháp
 - Nếu thiếu thông tin: Tech Consultant yêu cầu thêm context
 
-**Ghi chú:** Parent Agent gọi skill parent-orchestrator -> parent-orchestrator điều phối Planning Worker với skill tech-consultant.
+**Ghi chú:** Parent Agent gọi skill agent-orchestrator -> agent-orchestrator điều phối Planning Worker với skill tech-consultant.
 
 ---
 
@@ -168,7 +168,7 @@
 - `/.project_contexts/management/` tồn tại
 
 **Main Flow:**
-1. Parent Agent kích hoạt skill **parent-orchestrator**
+1. Parent Agent kích hoạt skill **agent-orchestrator**
 2. Parent-orchestrator skill điều phối: gọi Planning Worker với skill **pm-project-manager**
 3. Planning Worker (với PM Skill) đọc Tech Spec từ `/.project_contexts/arch/tech_specs/`
 4. PM Skill chia nhỏ thành tasks:
@@ -189,7 +189,7 @@
 - Nếu task quá lớn: PM Skill chia nhỏ thêm
 - Nếu dependencies chưa rõ: PM Skill yêu cầu Tech Consultant làm rõ
 
-**Ghi chú:** Parent Agent gọi skill parent-orchestrator -> parent-orchestrator điều phối Planning Worker với skill pm-project-manager.
+**Ghi chú:** Parent Agent gọi skill agent-orchestrator -> agent-orchestrator điều phối Planning Worker với skill pm-project-manager.
 
 ---
 
@@ -206,7 +206,7 @@
 - Tech Spec đã được tạo
 
 **Main Flow:**
-1. Parent Agent kích hoạt skill **parent-orchestrator**
+1. Parent Agent kích hoạt skill **agent-orchestrator**
 2. Parent-orchestrator skill điều phối: gọi Execute Worker với technical skills tương ứng
 3. Execute Worker đọc Implementation Ticket từ `/.project_contexts/management/backlogs/active.md`
 4. Execute Worker đọc Tech Spec từ `/.project_contexts/arch/tech_specs/`
@@ -228,7 +228,7 @@
 - Nếu gặp blocker: Execute Worker báo cáo ngay cho Parent Agent
 - Nếu tests fail: Execute Worker debug và sửa
 
-**Ghi chú:** Parent Agent gọi skill parent-orchestrator -> parent-orchestrator điều phối Execute Worker với technical skills.
+**Ghi chú:** Parent Agent gọi skill agent-orchestrator -> agent-orchestrator điều phối Execute Worker với technical skills.
 
 ---
 
@@ -248,7 +248,7 @@
 
 **Main Flow:**
 1. Execute Worker báo cáo hoàn thành
-2. Parent Agent kích hoạt skill **parent-orchestrator**
+2. Parent Agent kích hoạt skill **agent-orchestrator**
 3. Parent-orchestrator skill điều phối review:
    - Gọi Planning Worker với skill **pm-project-manager** để review
    - Gọi Planning Worker với skill **tech-consultant** nếu cần review kỹ thuật
@@ -289,7 +289,7 @@
 
 **Main Flow:**
 1. Người dùng yêu cầu: "Báo cáo tiến độ"
-2. Parent Agent kích hoạt skill **parent-orchestrator**
+2. Parent Agent kích hoạt skill **agent-orchestrator**
 3. Parent-orchestrator skill điều phối: gọi General Worker với skill **report**
 4. General Worker (với Report Skill) đọc `/.project_contexts/project_context_map.md`
 5. General Worker đọc `/.project_contexts/management/progress_reports/`
@@ -306,7 +306,7 @@
 - Người dùng có cái nhìn tổng quan
 - Quyết định tiếp theo được xác định
 
-**Ghi chú:** Parent Agent gọi skill parent-orchestrator -> parent-orchestrator điều phối General Worker với skill report.
+**Ghi chú:** Parent Agent gọi skill agent-orchestrator -> agent-orchestrator điều phối General Worker với skill report.
 
 ---
 
@@ -315,8 +315,8 @@
 ### 2.1 Functional Requirements (Yêu cầu chức năng)
 
 #### FR-01: Quản lý cấu trúc dự án
-- **Skill parent-orchestrator** cần quản lý việc này bằng các script tự động (Python)
-- Parent Agent (với skill parent-orchestrator) có thể gọi General Worker với skill **update-project** khi người dùng yêu cầu
+- **Skill agent-orchestrator** cần quản lý việc này bằng các script tự động (Python)
+- Parent Agent (với skill agent-orchestrator) có thể gọi General Worker với skill **update-project** khi người dùng yêu cầu
 - Skill **update-project** (biến thành skill.md) thực hiện:
   - Tạo cấu trúc thư mục
   - Tạo file template (Markdown)
@@ -348,14 +348,14 @@
 - Execute Worker phải báo cáo blocker ngay
 
 #### FR-06: Review & Nghiệm thu
-- Parent Agent (với skill parent-orchestrator) cần phải quản lý việc cập nhật của FR-01
+- Parent Agent (với skill agent-orchestrator) cần phải quản lý việc cập nhật của FR-01
 - Parent Agent phải verify kết quả
 - Parent Agent phải yêu cầu người dùng xác nhận
 - Parent Agent phải kích hoạt Tech Consultant khi cần
 - Parent Agent phải đóng task khi đạt
 
 #### FR-07: Báo cáo
-- Công việc của Parent Agent (với skill parent-orchestrator)
+- Công việc của Parent Agent (với skill agent-orchestrator)
 - Parent Agent có thể gọi General Worker với skill **report** khi người dùng yêu cầu (tương tự FR-01)
 - Hệ thống phải tổng hợp progress
 - Hệ thống phải hiển thị blockers
@@ -371,7 +371,7 @@
 - Thời gian tạo Tech Spec < 30 giây
 
 #### NFR-02: Reliability
-- Việc của Parent Agent (với skill parent-orchestrator) - vẫn là skill-centric
+- Việc của Parent Agent (với skill agent-orchestrator) - vẫn là skill-centric
 - Hệ thống phải ghi log mọi hành động
 - Hệ thống phải detect lỗi sớm
 - Hệ thống phải có rollback capability
@@ -399,7 +399,7 @@
 **Phân loại Skills:**
 
 1. **High-Level Skills** (cần phải specialized, general, mental models, system thinking, rules, critical thinking):
-   - parent-orchestrator skill
+   - agent-orchestrator skill
    - tech-consultant skill
    - po-product-owner skill
    - pm-project-manager skill
