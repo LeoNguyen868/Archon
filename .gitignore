@@ -53,3 +53,4 @@ yarn-debug.log*
 yarn-error.log*
 
 # Project Context - CRITICAL: Keep this ignored!
+.project_contexts/
