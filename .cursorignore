@@ -1,0 +1,8 @@
+# Allow AI to access project context files despite gitignore
+# This overrides git's ignore rules for Cursor AI operations
+!.project_contexts/
+
+# Still ignore generated/sensitive content within project_contexts
+.project_contexts/**/temp/
+.project_contexts/**/cache/
+.project_contexts/**/*.log
