@@ -51,8 +51,8 @@ Follow the OODA Loop for every request:
   - **If MISSING:** Project needs initialization → Read initialization skill and follow its delegation pattern
   - **If EXISTS:** Project is initialized → Continue with skill-specific classification
 - **Intent Classification:**
-    - **"Initialize project" / "Setup project"**: Read initialization skill
-    - **"Update project" / "Sync project"**: Read update-project skill  
+    - **"Initialize project" / "Setup project"**: Read initialization skill -> delegate to workers to initialize project
+    - **"Update project" / "Sync project"**: Read update-project skill -> delegate to workers to update project
     - **"Add feature" / "New requirement"**: Read delegation skill → Delegate to Planning Worker (PO)
     - **"Architecture" / "Technical design"**: Read delegation skill → Delegate to Planning Worker (Tech Consultant)
     - **"Plan" / "Break down tasks"**: Read delegation skill → Delegate to Planning Worker (PM)
@@ -89,9 +89,24 @@ Follow the OODA Loop for every request:
   4. **Verify Results:** Check worker outputs against skill's expected results
   5. **Continue to Next Step:** Only proceed when current step(s) are verified
 - **Parallel Delegation Examples:**
-  - **Initialization:** Can run structure creation AND project research in parallel
-  - **Updates:** Can run template sync AND context refresh in parallel
-  - **Planning:** Can run tech design AND task breakdown in parallel (after user stories)
+  - **Initialization:** CAN run structure creation AND project research in parallel ONLY if:
+    - Structure creation creates directories ONLY (no files)
+    - Project research reads existing files ONLY (no writes)
+    - Context writing happens AFTER both complete
+  - **Updates:** CAN run template sync AND context refresh in parallel ONLY if:
+    - Template sync touches different files than context refresh
+    - No overlapping file modifications
+    - Integration step validates consistency
+  - **Planning:** CAN run tech design AND task breakdown in parallel ONLY if:
+    - Both read from same user story (no conflicts)
+    - Write to different output files
+    - Integration step validates dependencies
+- **Parallel Delegation Rules (CRITICAL):**
+  - **Rule 1:** Never allow parallel writes to same files
+  - **Rule 2:** Ensure read-only operations don't conflict with write operations
+  - **Rule 3:** Separate input/output spaces for parallel workers
+  - **Rule 4:** Always include integration step after parallel completion
+  - **Rule 5:** Use sequential execution if any doubt about conflicts
 - **Delegation Format (from skill documentation):**
     - **Role:** [Specific Agent Role from skill instructions]
     - **Required Skill:** [Specific Skill Name from skill instructions]

@@ -20,19 +20,25 @@ Read this skill to understand that initialization requires:
 - Analyzing existing project context
 - Setting up initial documentation
 
-### Step 2 & 3: Parallel Delegation (Optional Optimization)
-**For faster initialization, orchestrator can run these in parallel:**
+### Step 2 & 3: Parallel Delegation (SAFE Parallel Option)
+**For faster initialization, orchestrator can run these in parallel with SAFE constraints:**
 
 **Parallel Delegation Format:**
 ```
 Delegate simultaneously:
-- Role: General Worker | Required Skill: update-project | Task: Create .project_contexts/ structure
-- Role: General Worker | Required Skill: research | Task: Analyze existing project context
+- Role: General Worker | Required Skill: update-project | Task: Create .project_contexts/ directories ONLY (no files)
+- Role: General Worker | Required Skill: research | Task: Analyze existing project context (read-only)
+Constraints: 
+- Structure worker: Create directories ONLY, skip file creation
+- Research worker: Read-only analysis, no file modifications
+- Both workers must complete before context writing
 ```
 
-**Sequential Alternative (if parallel not available):**
-- Step 2: Delegate General Worker (update-project) → Create structure
+**Sequential Alternative (SAFEST):**
+- Step 2: Delegate General Worker (update-project) → Create complete structure
 - Step 3: Delegate General Worker (research) → Analyze project
+- Step 4: Review both results
+- Step 5: Delegate General Worker (update-project) → Write context
 
 ### Step 4: Review Worker Results
 Verify that:
@@ -79,19 +85,21 @@ User requests "Initialize project"
      ↓
 Orchestrator reads initialization skill
      ↓
-Parallel Option: Delegate both workers simultaneously
-     ├─ General Worker (update-project) → Create structure
-     └─ General Worker (research) → Analyze project
+SAFE Parallel Option:
+     ├─ General Worker (update-project) → Create directories ONLY
+     └─ General Worker (research) → Read-only analysis
+     ↓
+Wait for both workers to complete
      ↓
 Review both results
      ↓
-Delegate General Worker (update-project) → Write context
+Delegate General Worker (update-project) → Write context files
      ↓
 Verify and present to user
 
-OR Sequential Option:
+OR SAFEST Sequential Option:
      ↓
-Delegate General Worker (update-project) → Create structure
+Delegate General Worker (update-project) → Create complete structure
      ↓
 Delegate General Worker (research) → Analyze project
      ↓
@@ -101,6 +109,13 @@ Delegate General Worker (update-project) → Write context
      ↓
 Verify and present to user
 ```
+
+## Parallel Safety Rules
+- **Rule 1:** Structure creation must be directories-only during parallel phase
+- **Rule 2:** Research must be read-only during parallel phase
+- **Rule 3:** Context writing happens only after both complete
+- **Rule 4:** Use sequential if any doubt about file conflicts
+- **Rule 5:** Always verify directory creation before file writing
 
 ## Notes
 - **Orchestrator Role:** This skill guides orchestrator on how to coordinate initialization, not for direct execution
