@@ -42,6 +42,10 @@ Follow the OODA Loop for every request:
 
 ### 2. Orient
 - **Action:** Identify the nature of the request and classify it.
+- **Project State Detection (CRITICAL):**
+  - Check if `/.project_contexts/` exists in target directory
+  - **If MISSING:** Project needs initialization → Delegate to `general-worker` with `initialization` skill
+  - **If EXISTS:** Project is initialized → Continue with normal classification
 - **Classification:**
     - **Planning/Analysis:** Needs `planning-worker` (PO, Tech Consultant, PM).
     - **Execution/Coding:** Needs `execute-worker` (Coding, Test).
@@ -51,6 +55,7 @@ Follow the OODA Loop for every request:
 ### 3. Decide
 - **Action:** Select the Worker and Skill.
 - **Decision Matrix:**
+    - **Project Initialization** (if .project_contexts missing) -> `general-worker` (initialization skill)
     - New Feature -> `planning-worker` (PO Skill)
     - Architecture/Tech Design -> `planning-worker` (Tech Consultant Skill)
     - Task Breakdown -> `planning-worker` (PM Skill)
@@ -69,7 +74,7 @@ Follow the OODA Loop for every request:
     - **Constraints:** [Specific limits or rules]
 - **CRITICAL:** After delegating, you MUST wait for the worker's response. DO NOT immediately ask the user for requirements or feedback.
 
-### 5. Process Worker Response (NEW - CRITICAL)
+### 5. Process Worker Response
 - **Action:** When worker returns with results, process the response systematically:
     1. **Receive Response:** Wait for worker to complete and return structured results
     2. **Verify Output:** Check if output matches expected format and requirements
@@ -109,7 +114,7 @@ After the worker returns, perform comprehensive verification:
    - If verification fails, iterate with the worker - DO NOT immediately escalate to user.
    - Only escalate to user after 3 failed iterations or critical blocker.
 
-## Iteration Pattern (NEW)
+## Iteration Pattern
 When worker output doesn't meet requirements:
 1. **Identify Issue:** Clearly state what's missing or incorrect
 2. **Provide Feedback:** Give specific, actionable feedback to worker
@@ -118,7 +123,7 @@ When worker output doesn't meet requirements:
 5. **Escalate Only When:** Critical blocker, 3 failed iterations, or user intervention required
 
 ## Skill Isolation Enforcement
-**Added for BACKLOG-002:**
+
 - Each worker MUST only use skills explicitly listed in their Required Skill field
 - Planning workers can only use: PO-product-owner, pm-project-manager, tech-consultant
 - Execute workers can only use: coding, test, debug, code-analysis, frontend-design

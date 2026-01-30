@@ -20,8 +20,11 @@
 **Main Flow:**
 1. Người dùng gửi yêu cầu: "Khởi tạo dự án [Tên dự án]"
 2. Parent Agent kích hoạt skill **agent-orchestrator**
-3. Parent-orchestrator skill gọi action `initialize-project.md`
-4. Parent-orchestrator skill chạy script `init_project.py`:
+3. Parent-orchestrator skill kiểm tra trạng thái dự án:
+   - Check if `.project_contexts/` directory exists
+   - Nếu không tồn tại → tiếp tục với initialization
+4. Parent-orchestrator skill điều phối: gọi General Worker với skill **initialization**
+5. General Worker (với initialization skill) chạy script `init_project.py`:
    ```python
    # Pseudo-code logic cho init_project.py
    def initialize_project_structure():
@@ -30,32 +33,33 @@
        create_directory("/.project_contexts/arch/")
        create_directory("/.project_contexts/dev/")
        create_directory("/.project_contexts/shared/")
-       
+
        # 2. Tạo file template
        create_template("project_context_map.md")
        create_template("current_progress.md")
        create_template("implementation_ticket.md")
-       
+
        # 3. Tạo communication rules
        create_file(".cursor/rules/communication_rules.mdc", COMMUNICATION_TEMPLATE)
    ```
-5. Script tạo cấu trúc thư mục:
+6. Script tạo cấu trúc thư mục:
    - `/.project_contexts/pm/` - Product Owner domain
    - `/.project_contexts/arch/` - Technical Architecture domain
    - `/.project_contexts/dev/` - Development domain
    - `/.project_contexts/shared/` - Shared artifacts
-6. Script tạo file template:
+7. Script tạo file template:
    - `project_context_map.md` - Bản đồ ngữ cảnh dự án
    - `current_progress.md` - Trạng thái hiện tại
    - Các template cho backlog, changelog
-7. Script tạo file `.cursor/rules/communication_rules.mdc` với template giao tiếp
-8. Parent Agent yêu cầu người dùng cung cấp:
-   - Tên dự án
-   - Mục tiêu cốt lõi (The One Thing)
-9. Parent Agent cập nhật `project_context_map.md` (manual)
-10. Parent Agent báo cáo hoàn thành
+8. Script tạo file `.cursor/rules/communication_rules.mdc` với template giao tiếp
+9. General Worker báo cáo hoàn thành về Parent Agent
+10. Parent Agent yêu cầu người dùng cung cấp:
+    - Tên dự án
+    - Mục tiêu cốt lõi (The One Thing)
+11. Parent Agent cập nhật `project_context_map.md`
+12. Parent Agent báo cáo hoàn thành
 
-**Ghi chú:** Logic chi tiết của UC-01 được đặc tả trong skill **agent-orchestrator** (action `initialize-project.md` và script `init_project.py`).
+**Ghi chú:** Parent Agent gọi skill agent-orchestrator → agent-orchestrator điều phối General Worker với skill initialization → General Worker chạy init_project.py script.
 
 **Postconditions:**
 - Cấu trúc thư mục đầy đủ được tạo
@@ -85,7 +89,7 @@
 1. Người dùng mô tả yêu cầu tính năng
 2. Người dùng tương tác với Parent Agent
 3. Parent Agent kích hoạt skill **agent-orchestrator**
-4. Parent-orchestrator skill điều phối: gọi Planning Worker với skill **po-product-owner**
+4. Agent-orchestrator skill điều phối: delegate Planning Worker với skill **po-product-owner**
 5. Planning Worker (với PO Skill) áp dụng phương pháp Socratic:
    - Hỏi "Is that true?" - Xác thực giả định
    - Hỏi "What is the real problem?" - Xác định vấn đề gốc
@@ -96,6 +100,8 @@
 9. Planning Worker báo cáo kết quả về Parent Agent
 10. Parent Agent trình bày kết quả cho người dùng xác nhận
 
+**Ghi chú:** User tương tác với Parent Agent → Parent Agent gọi skill agent-orchestrator → agent-orchestrator delegate Planning Worker với skill po-product-owner.
+
 **Postconditions:**
 - User Story được tạo và lưu
 - Acceptance Criteria rõ ràng
@@ -104,8 +110,6 @@
 **Alternative Flows:**
 - Nếu yêu cầu mơ hồ: PO Skill tiếp tục hỏi cho đến khi rõ
 - Nếu yêu cầu không khả thi: PO Skill đề xuất phương án thay thế
-
-**Ghi chú:** User tương tác với Parent Agent -> Parent Agent gọi skill agent-orchestrator -> agent-orchestrator điều phối Planning Worker với skill po-product-owner.
 
 ---
 
@@ -151,7 +155,7 @@
 - Nếu yêu cầu không khả thi: Tech Consultant từ chối và đề xuất giải pháp
 - Nếu thiếu thông tin: Tech Consultant yêu cầu thêm context
 
-**Ghi chú:** Parent Agent gọi skill agent-orchestrator -> agent-orchestrator điều phối Planning Worker với skill tech-consultant.
+**Ghi chú:** Parent Agent gọi skill agent-orchestrator → agent-orchestrator delegate Planning Worker với skill tech-consultant.
 
 ---
 
@@ -169,7 +173,7 @@
 
 **Main Flow:**
 1. Parent Agent kích hoạt skill **agent-orchestrator**
-2. Parent-orchestrator skill điều phối: gọi Planning Worker với skill **pm-project-manager**
+2. Agent-orchestrator skill điều phối: delegate Planning Worker với skill **pm-project-manager**
 3. Planning Worker (với PM Skill) đọc Tech Spec từ `/.project_contexts/arch/tech_specs/`
 4. PM Skill chia nhỏ thành tasks:
    - Xác định dependencies
@@ -207,7 +211,7 @@
 
 **Main Flow:**
 1. Parent Agent kích hoạt skill **agent-orchestrator**
-2. Parent-orchestrator skill điều phối: gọi Execute Worker với technical skills tương ứng
+2. Agent-orchestrator skill điều phối: delegate Execute Worker với technical skills tương ứng
 3. Execute Worker đọc Implementation Ticket từ `/.project_contexts/management/backlogs/active.md`
 4. Execute Worker đọc Tech Spec từ `/.project_contexts/arch/tech_specs/`
 5. Execute Worker thực hiện coding:
@@ -249,9 +253,9 @@
 **Main Flow:**
 1. Execute Worker báo cáo hoàn thành
 2. Parent Agent kích hoạt skill **agent-orchestrator**
-3. Parent-orchestrator skill điều phối review:
-   - Gọi Planning Worker với skill **pm-project-manager** để review
-   - Gọi Planning Worker với skill **tech-consultant** nếu cần review kỹ thuật
+3. Agent-orchestrator skill điều phối review:
+   - Delegate Planning Worker với skill **pm-project-manager** để review
+   - Delegate Planning Worker với skill **tech-consultant** nếu cần review kỹ thuật
 4. Reviewer áp dụng "Trust but Verify":
    - Đọc changelog
    - Kiểm tra code output
@@ -290,7 +294,7 @@
 **Main Flow:**
 1. Người dùng yêu cầu: "Báo cáo tiến độ"
 2. Parent Agent kích hoạt skill **agent-orchestrator**
-3. Parent-orchestrator skill điều phối: gọi General Worker với skill **report**
+3. Agent-orchestrator skill điều phối: delegate General Worker với skill **report**
 4. General Worker (với Report Skill) đọc `/.project_contexts/project_context_map.md`
 5. General Worker đọc `/.project_contexts/management/progress_reports/`
 6. General Worker đọc `/.project_contexts/management/backlogs/`
@@ -407,13 +411,17 @@
 2. **Technical Skills** (cần phải chuyên biệt hóa, modular):
    - review skill
    - delegation skill
-   - initialization skill
    - debug skill
-   - report skill
    - research skill
 
 3. **General Skills** (có thể shared):
-   - Các skill chung dùng cho nhiều tác vụ
+   - initialization skill (dùng cho khởi tạo dự án mới)
+   - update-project skill (dùng cho cập nhật dự án đã tồn tại)
+   - report skill
+   - test skill
+   - code-analysis skill
+   - frontend-design skill
+   - coding skill
 
 ---
 

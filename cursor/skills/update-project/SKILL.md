@@ -7,10 +7,24 @@ description: Update project structure, documentation, and context files. Use for
 Skill for updating project structure, templates, and context documentation.
 
 ## When to Use
-- When project structure needs updates.
-- When templates need modifications.
-- When context files need synchronization.
-- When configuration files need updates.
+- **ONLY** when `.project_contexts/` directory already exists in the project
+- When project structure needs updates after initial setup
+- When templates need modifications or refresh
+- When context files need synchronization
+- When configuration files need updates
+- **NEVER** use for brand new projects - use `initialization` skill instead
+
+## Decision Flow
+```
+1. Check if .project_contexts/ exists in target project
+   - NO → Use initialization skill, NOT update-project
+   - YES → Continue with update-project
+
+2. Determine what needs updating:
+   - Missing directories → Create them
+   - Outdated context files → Refresh them
+   - Template changes → Sync them
+```
 
 ## Instructions
 
