@@ -5,7 +5,7 @@ description: Guide orchestrator to coordinate project updates, maintenance, and 
 
 # Update Project Skill
 
-Skill for orchestrator to understand project update intent and coordinate workers to maintain and synchronize project structure and context.
+Skill for orchestrator understand project update intent and coordinate workers to maintain and synchronize project structure and context.
 
 ## When to Use
 - **ONLY** when `.project_contexts/` directory already exists in the project

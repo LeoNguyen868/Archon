@@ -5,7 +5,7 @@ description: Initialize project structure and analyze existing project context. 
 
 # Initialization Skill
 
-Skill for orchestrator to understand project initialization intent and coordinate workers to set up project structure and context.
+Skill for orchestrator understand project initialization intent and coordinate workers to set up project structure and context.
 
 ## When to Use
 - **ONLY** when user requests to initialize a new project with Archon system

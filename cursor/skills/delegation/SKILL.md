@@ -5,7 +5,7 @@ description: Guide orchestrator to delegate tasks to appropriate workers with cl
 
 # Delegation Skill
 
-Skill for orchestrator to understand how to delegate tasks to specialized workers with clear context and instructions.
+Skill for orchestrator understand how to delegate tasks to specialized workers with clear context and instructions.
 
 ## Role Rules (Strict Permissions)
 - **Primary Permissions:** Task initiation, context preparation, worker selection.
