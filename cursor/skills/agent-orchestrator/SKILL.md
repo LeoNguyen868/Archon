@@ -41,38 +41,64 @@ Follow the OODA Loop for every request:
     - Check `/.project_contexts/management/current_progress.md` for immediate context.
 
 ### 2. Orient
-- **Action:** Identify the nature of the request and classify it.
+- **Action:** Read the appropriate skill to understand user intent and classify the request.
+- **Skill Reading Process:**
+  1. **Identify Request Type:** Determine which skill matches user intent
+  2. **Read Skill Documentation:** Understand the skill's requirements and delegation pattern
+  3. **Extract Delegation Instructions:** Follow the skill's specific orchestrator instructions
 - **Project State Detection (CRITICAL):**
   - Check if `/.project_contexts/` exists in target directory
-  - **If MISSING:** Project needs initialization → Delegate to `general-worker` with `initialization` skill
-  - **If EXISTS:** Project is initialized → Continue with normal classification
-- **Classification:**
-    - **Planning/Analysis:** Needs `planning-worker` (PO, Tech Consultant, PM).
-    - **Execution/Coding:** Needs `execute-worker` (Coding, Test).
-    - **General/Reporting:** Needs `general-worker` (Report, Update).
-- **Match:** Match the request to the specific Skill required (e.g., "Add feature" -> PO Skill).
+  - **If MISSING:** Project needs initialization → Read initialization skill and follow its delegation pattern
+  - **If EXISTS:** Project is initialized → Continue with skill-specific classification
+- **Intent Classification:**
+    - **"Initialize project" / "Setup project"**: Read initialization skill
+    - **"Update project" / "Sync project"**: Read update-project skill  
+    - **"Add feature" / "New requirement"**: Read delegation skill → Delegate to Planning Worker (PO)
+    - **"Architecture" / "Technical design"**: Read delegation skill → Delegate to Planning Worker (Tech Consultant)
+    - **"Plan" / "Break down tasks"**: Read delegation skill → Delegate to Planning Worker (PM)
+    - **"Implement" / "Code" / "Test"**: Read delegation skill → Delegate to Execute Worker
+    - **"Report" / "Status"**: Read delegation skill → Delegate to General Worker
+- **Match:** Match the request to the appropriate orchestrator skill and follow its delegation instructions.
 
 ### 3. Decide
-- **Action:** Select the Worker and Skill.
-- **Decision Matrix:**
-    - **Project Initialization** (if .project_contexts missing) -> `general-worker` (initialization skill)
-    - New Feature -> `planning-worker` (PO Skill)
-    - Architecture/Tech Design -> `planning-worker` (Tech Consultant Skill)
-    - Task Breakdown -> `planning-worker` (PM Skill)
-    - Implementation -> `execute-worker` (Coding Skill)
-    - Review/Test -> `execute-worker` (Test Skill)
-    - Report/Status -> `general-worker` (Report Skill)
+- **Action:** Follow the delegation instructions from the skill you read in Orient step.
+- **Decision Process:**
+  1. **Use Skill's Delegation Pattern:** Each skill provides specific delegation instructions
+  2. **Follow Step-by-Step:** Execute the skill's orchestrator instructions in order
+  3. **Verify Prerequisites:** Ensure all conditions from the skill are met
+- **Skill-Based Decision Matrix:**
+    - **Initialization Skill:** Follow its 6-step delegation process (structure → research → context)
+    - **Update-Project Skill:** Follow its update-type classification and delegation
+    - **Delegation Skill:** Follow worker-specific delegation patterns (PO, PM, Tech Consultant, Execute, General)
 
 ### 4. Act
-- **Action:** Trigger delegation using the `Task` tool.
-- **Requirement:** DO NOT return JSON. Instead, provide a clear delegation instruction.
-- **Delegation Format:**
-    - **Role:** [Specific Agent Role]
-    - **Required Skill:** [Specific Skill Name]
-    - **Task:** [Detailed Task Description]
-    - **Context:** [Required files and context paths]
-    - **Constraints:** [Specific limits or rules]
-- **CRITICAL:** After delegating, you MUST wait for the worker's response. DO NOT immediately ask the user for requirements or feedback.
+- **Action:** Execute delegation according to the skill's instructions.
+- **Delegation Process:**
+  1. **Identify Delegation Strategy:**
+     - **Sequential:** Tasks have dependencies (must wait for completion)
+     - **Parallel:** Tasks are independent (can run simultaneously)
+  2. **Execute Sequential Delegation:**
+     - Follow skill's numbered delegation steps in order
+     - Wait for worker response before proceeding to next step
+     - Verify results before continuing
+  3. **Execute Parallel Delegation:**
+     - Identify independent tasks that can run simultaneously
+     - Delegate multiple workers at the same time
+     - Wait for all workers to complete
+     - Collect and integrate all results
+  4. **Verify Results:** Check worker outputs against skill's expected results
+  5. **Continue to Next Step:** Only proceed when current step(s) are verified
+- **Parallel Delegation Examples:**
+  - **Initialization:** Can run structure creation AND project research in parallel
+  - **Updates:** Can run template sync AND context refresh in parallel
+  - **Planning:** Can run tech design AND task breakdown in parallel (after user stories)
+- **Delegation Format (from skill documentation):**
+    - **Role:** [Specific Agent Role from skill instructions]
+    - **Required Skill:** [Specific Skill Name from skill instructions]
+    - **Task:** [Detailed Task Description from skill instructions]
+    - **Context:** [Required files and context paths from skill instructions]
+    - **Constraints:** [Specific limits or rules from skill instructions]
+- **CRITICAL:** Follow the skill's exact delegation sequence. Use parallel execution only when tasks are truly independent.
 
 ### 5. Process Worker Response
 - **Action:** When worker returns with results, process the response systematically:
