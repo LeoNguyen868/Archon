@@ -66,6 +66,17 @@ Followed by:
 - **Context:** Template assets directory and current project needs
 - **Constraints:** Maintain backward compatibility with existing files
 
+#### For Script-Based Initialization:
+**Delegation Format:**
+- **Role:** Execute Worker
+- **Required Skill:** coding
+- **Task:** Execute `~/.cursor/skills/initialization/scripts/init_project.py` at user's working directory to initialize project
+- **Context:** User's working directory path, project requirements
+- **Constraints:** 
+  - Execute script in user's current working directory
+  - Report script execution results and any errors
+  - Verify script output matches expected initialization results
+
 #### For General Maintenance:
 **Delegation Format:**
 - **Role:** General Worker
@@ -104,6 +115,12 @@ Verify that:
 - Template references updated in documentation
 - Backward compatibility maintained
 
+### From Script-Based Initialization:
+- Script execution completed successfully
+- Project structure created according to script logic
+- Initialization logs and results reported
+- Any errors or warnings documented
+
 ### From General Maintenance:
 - Clean and organized project structure
 - Updated documentation and references
@@ -133,6 +150,7 @@ Present results to user
 | "Create missing directories" | Structure | General Worker | update-project | Directory structure |
 | "Update project info" | Context | General Worker | research + update-project | Updated context files |
 | "Sync templates" | Template | General Worker | update-project | Synchronized templates |
+| "Initialize project with script" | Script-Based Initialization | Execute Worker | coding | Script execution results |
 | "Clean up project" | Maintenance | General Worker | update-project | Organized structure |
 
 ## Notes
