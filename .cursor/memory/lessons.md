@@ -222,3 +222,13 @@ After each task completion:
 - Update this file whenever new patterns or issues are discovered
 - Keep entries concise but informative
 - Use consistent formatting for easy scanning
+
+## 2026-02-01
+
+### Fast Lane milestone execution
+- A valid Fast Lane task can be a “memory-only” maintenance action: update `active_brief.md` → change one project-tracking artifact (e.g. `roadmap.md`) → add a short lesson → mark the brief completed.
+- Keep milestone updates small to avoid memory file bloat; prefer one concise entry over verbose logs.
+
+### Memory system validation
+- Validate existence + size budget early (all memory files < 10KB) to prevent context bloat.
+- Enforce constraints consistently across all memory artifacts (e.g., remove emojis from `roadmap.md` if the project standard is “no emojis”).

@@ -7,7 +7,7 @@ set -e  # Exit on any error
 
 # Configuration
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-SOURCE_DIR="$SCRIPT_DIR/cursor"
+SOURCE_DIR="$SCRIPT_DIR/archon"
 TARGET_DIR="$HOME/.cursor"
 
 # Color codes for output
