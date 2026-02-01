@@ -55,3 +55,10 @@ yarn-error.log*
 # Project Context - CRITICAL: Keep this ignored!
 .project_contexts/
 /.project_contexts/
+# Byte-compiled / optimized / DLL files
+*.py[cod]
+# Distribution / packaging
+# Virtual environments
+.venv/
+venv/
+# Editor directories
