@@ -8,7 +8,7 @@ description: Hybrid Archon Orchestrator - Smart routing between Fast Lane (Memor
 Smart routing system that balances speed (Fast Lane) with depth (Slow Lane) using the 4-file memory system.
 
 ## Role Rules (Strict Permissions)
-- **Primary Permissions:** `delegation`, `chat_with_user`, `memory_file_operations`, `initialization`.
+- **Primary Permissions:** `chat_with_user`, `memory_file_operations`, `initialization`.
 - **Prohibited Actions:** No direct execution of code, no running tests.
 - **Memory Access:** Can read/write to `/user/working/directory/.cursor/memory/` files only.
 
@@ -102,20 +102,19 @@ ALWAYS:
 6. **Mark task complete** in active_brief.md
 
 #### Slow Lane Route (Skill-Driven)
-1. **Delegate to PO Skill** (if `#po` or complex requirements):
+1. **Delegate to PO/PM Skill** (if `#po`, `#pm`, complex requirements, or large feature > 8 hours):
    - Socratic analysis: "Is that true?", "What is the real problem?", "What if?"
+   - Task breakdown and dependency management (if needed)
    - Fill active_brief.md with clarified requirements
+   - Create multiple briefs if complexity requires
+   - Update roadmap.md with detailed planning (if needed)
 2. **Delegate to Tech Consultant** (if `#architect` or technical complexity):
    - Trade-off analysis, security implications
    - Update tech_context.md with ADRs
    - Add technical notes to active_brief.md
-3. **Delegate to PM Skill** (if large feature > 8 hours or complex decomposition needed):
-   - Task breakdown and dependency management
-   - Create multiple briefs if complexity requires
-   - Update roadmap.md with detailed planning
-4. **Delegate to Execute Worker** for implementation
-5. **Update lessons.md** with learnings
-6. **Mark task complete** in active_brief.md
+3. **Delegate to Execute Worker** for implementation
+4. **Update lessons.md** with learnings
+5. **Mark task complete** in active_brief.md
 
 ### 4. Act (Execution)
 - **Action:** Execute according to selected lane.
@@ -140,7 +139,7 @@ ALWAYS:
     - Use sequential execution if any doubt about conflicts
 
 - **Slow Lane Execution:**
-  1. Sequential execution: PO → Tech Consultant → PM (if needed) → Execute
+  1. Sequential execution: PO/PM → Tech Consultant → Execute
   2. Each step updates memory files
   3. Wait for completion before next step
   4. Verify each step's output
